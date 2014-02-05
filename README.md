@@ -9,8 +9,7 @@ My Android Sample Projects, these libraries can be used for future app implement
 Project Detail:
 ===============
 
-*	signIn
-    ______
+*	#signIn
 
 This is a sample project for simple sign in screen.
 
