@@ -10,7 +10,7 @@ Project Detail:
 ===============
 
 *	signIn
-_________
+    ______
 
 This is a sample project for simple sign in screen.
 
