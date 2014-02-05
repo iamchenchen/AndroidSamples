@@ -5,10 +5,10 @@ AndroidSamples
 
 My Android Sample Projects, these libraries can be used for future app implementation.
 
-Project Detail
-===============
+##Project Detail
 
-## signIn
+
+### signIn
 
 This is a sample project for simple sign in screen.
 
