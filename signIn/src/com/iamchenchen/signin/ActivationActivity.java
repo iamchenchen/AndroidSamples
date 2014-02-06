@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class ActivationActivity extends Activity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
+	private ProgressDialog progress;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,13 +150,30 @@ public class ActivationActivity extends Activity {
 		} else {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
-			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			showProgress(true);
-			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
+			
+			showLoadingDialog("Please Wait...", "Account activating now...");
+//			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
+//			showProgress(true);
+//			mAuthTask = new UserLoginTask();
+//			mAuthTask.execute((Void) null);
 		}
 	}
 
+	public void showLoadingDialog(String title, String detail) {
+
+		if (progress == null) {
+			progress = new ProgressDialog(this);
+			progress.setTitle(title);
+			progress.setMessage(detail);
+		}
+		progress.show();
+	}
+
+	public void dismissLoadingDialog() {
+		if (progress != null && progress.isShowing()) {
+			progress.dismiss();
+		}
+	}
 	/**
 	 * Shows the progress UI and hides the login form.
 	 */
