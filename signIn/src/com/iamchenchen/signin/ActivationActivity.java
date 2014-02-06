@@ -5,7 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -151,18 +153,38 @@ public class ActivationActivity extends Activity {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			
-			showLoadingDialog("Please Wait...", "Account activating now...");
+			//loading 
+//			showLoadingDialog("Please Wait...", "Account activating now...");
+			//click way
+			showAlterDialog("App Activated But...", 
+					"An email is sending to you now. Please confirm the last step of the activation from your email.",
+					"Continue to set up your password");
+			
+			//default way
 //			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 //			showProgress(true);
 //			mAuthTask = new UserLoginTask();
 //			mAuthTask.execute((Void) null);
 		}
 	}
+	
+	public void showAlterDialog(String title, String detail, String buttonText) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(detail).setTitle(title)
+		.setCancelable(false)
+		.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				//do things
+			}
+		});
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
 
 	public void showLoadingDialog(String title, String detail) {
 
 		if (progress == null) {
-			progress = new ProgressDialog(this);
+			progress = new ProgressDialog(this, AlertDialog.THEME_HOLO_DARK);
 			progress.setTitle(title);
 			progress.setMessage(detail);
 		}
